@@ -1,0 +1,52 @@
+services:
+  # Container do interpretador PHP
+  app:
+    image: php:8.3-fpm-alpine # Versão atual do PHP rodando sob o Alpine Linux (super leve)
+    container_name: Saloon-app
+    volumes:
+      - .:/var/www/html # Espelha sua pasta local de desenvolvimento dentro do container
+    working_dir: /var/www/html
+
+  # Container do servidor web Nginx
+  web:
+    image: nginx:alpine # Servidor Nginx extremamente leve
+    container_name: Saloon-web
+    ports:
+      - "8000:80" # Mapeia a porta 8000 da sua máquina física para a porta 80 de dentro do container
+    volumes:
+      - .:/var/www/html
+      # Mapeia nosso arquivo de configuração customizado do Nginx para dentro do container como Read-Only (:ro)
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - app # Garante que o container PHP suba antes do Nginx
+
+# Container do Banco de Dados MariaDB
+  db:
+    image: mariadb:10.11 # Versão estável e ultra leve do MariaDB
+    container_name: Saloon-db
+    ports:
+      - "3306:3306" # Porta padrão do MySQL/MariaDB
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password # Senha do administrador master
+      MYSQL_DATABASE: Saloon_db        # Nome do banco que será criado automaticamente
+      MYSQL_USER: Saloon_user          # Usuário comum do sistema
+      MYSQL_PASSWORD: Saloon_password  # Senha do usuário comum
+    volumes:
+      # Isola os dados do banco na sua máquina física para você não perder os dados salvos
+      # toda vez que o container for desligado.
+      - Saloon-db-data:/var/lib/mysql
+
+# Interface Gráfica Web para o MariaDB
+  adminer:
+    image: adminer:latest
+    container_name: Saloon-adminer
+    ports:
+      - "8080:8080" # Abre o gerenciador na porta 8080
+    depends_on:
+      - db
+
+
+
+# Declaração do volume físico do banco de dados fora dos containers
+volumes:
+  Saloon-db-data:

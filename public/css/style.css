@@ -1,0 +1,119 @@
+/* ==========================================================================
+   1. IMPORTAÇÃO DE FONTES
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@700&family=Fredoka:wght@600;700&display=swap');
+
+/* ==========================================================================
+   2. VARIÁVEIS GLOBAIS (DESIGN TOKENS)
+   ========================================================================== */
+:root {
+    /* --- CORES (Modo Claro Padrão) --- */
+    --bg-dark: oklch(0.92 0.02 264);
+    --bg: oklch(0.96 0.02 264);
+    --bg-light: oklch(1 0.02 264);
+    --text: oklch(0.15 0.04 264);
+    --text-muted: oklch(0.4 0.04 264);
+    --border: oklch(0.6 0.04 264);
+    --border-muted: oklch(0.7 0.04 264);
+    --primary: oklch(0.4 0.1 264);
+    --accent: #45e0f7;
+
+    /* --- TIPOGRAFIA --- */
+    --font-family-main: 'Plus Jakarta Sans', sans-serif;
+    --font-size-sm: 0.875rem; /* 14px */
+    --font-size-base: 1rem;    /* 16px */
+    --font-size-lg: 1.25rem;  /* 20px */
+    --font-size-xl: 1.75rem;  /* 28px */
+    --font-size-2xl: 2.5rem;  /* 40px */
+
+    --line-height-tight: 1.1;
+    --line-height-normal: 1.5;
+
+    /* --- ESPAÇAMENTOS (Grid de 8px) --- */
+    --space-1: 0.25rem; /* 4px */
+    --space-2: 0.5rem;  /* 8px */
+    --space-3: 1rem;    /* 16px */
+    --space-4: 1.5rem;  /* 24px */
+    --space-5: 2rem;    /* 32px */
+
+    /* --- BORDAS --- */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 9999px;
+}
+
+/* TEMA ESCURO ATIVADO PELO JS */
+body.darkmode {
+    --bg-dark: oklch(0.1 0.02 264);
+    --bg: oklch(0.15 0.02 264);
+    --bg-light: oklch(0.2 0.02 264);
+    --text: oklch(0.96 0.04 264);
+    --text-muted: oklch(0.76 0.04 264);
+    --border: oklch(0.4 0.04 264);
+    --border-muted: oklch(0.3 0.04 264);
+    --primary: oklch(0.76 0.1 264);
+    color-scheme: dark;
+}
+
+/* ==========================================================================
+   3. RESET MODERNO UNIVERSAL
+   ========================================================================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    color-scheme: light dark;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family-main);
+    background-color: var(--bg-light);
+    color: var(--text);
+    line-height: var(--line-height-normal);
+    min-height: 100vh;
+}
+
+img, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ==========================================================================
+   4. ESTRUTURA MACRO (GRID AREAS + CONTAINER)
+   ========================================================================== */
+.app-layout {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+}
+
+header { grid-area: header; }
+main   { grid-area: main; }
+footer { grid-area: footer; }
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--space-4);
+}

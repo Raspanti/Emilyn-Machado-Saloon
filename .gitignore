@@ -1,0 +1,27 @@
+# 1. Arquivos de Senhas e Configurações de Ambiente (CRÍTICO)
+.env
+.env.*
+*.env
+
+# 2. Configurações de Editores e IDEs (VS Code, VSCodium, JetBrains)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+
+# 3. Lixo de Sistemas Operacionais (Windows, Mac, Linux)
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+
+# 4. Logs e Arquivos Temporários
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# 5. Pastas de Dependências e Builds pesadas
+vendor/
+node_modules/
+dist/
