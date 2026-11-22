@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: ./docker/php
+    image: emilyn-php-agenda:8.3
+    env_file:
+      - .env.agenda
+    environment:
+      TZ: America/Sao_Paulo
+  web:
+    ports: !override
+      - "127.0.0.1:8000:80"

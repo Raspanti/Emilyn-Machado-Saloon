@@ -12,7 +12,7 @@ services:
     image: nginx:alpine # Servidor Nginx extremamente leve
     container_name: Saloon-web
     ports:
-      - "8000:80" # Mapeia a porta 8000 da sua máquina física para a porta 80 de dentro do container
+      - "127.0.0.1:8000:80" # Mapeia a porta 8000 da sua máquina física para a porta 80 de dentro do container
     volumes:
       - .:/var/www/html
       # Mapeia nosso arquivo de configuração customizado do Nginx para dentro do container como Read-Only (:ro)
@@ -25,7 +25,7 @@ services:
     image: mariadb:10.11 # Versão estável e ultra leve do MariaDB
     container_name: Saloon-db
     ports:
-      - "3306:3306" # Porta padrão do MySQL/MariaDB
+      - "127.0.0.1:3306:3306" # Porta padrão do MySQL/MariaDB
     environment:
       MYSQL_ROOT_PASSWORD: root_password # Senha do administrador master
       MYSQL_DATABASE: Saloon_db        # Nome do banco que será criado automaticamente
@@ -41,7 +41,7 @@ services:
     image: adminer:latest
     container_name: Saloon-adminer
     ports:
-      - "8080:8080" # Abre o gerenciador na porta 8080
+      - "127.0.0.1:8080:8080" # Abre o gerenciador na porta 8080
     depends_on:
       - db
 

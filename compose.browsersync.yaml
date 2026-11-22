@@ -1,0 +1,11 @@
+services:
+  browsersync:
+    build:
+      context: ./docker/browsersync
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./public:/workspace/public:ro
+      - ./docker/browsersync/bs-config.cjs:/config/bs-config.cjs:ro
+    init: true
+    restart: "no"

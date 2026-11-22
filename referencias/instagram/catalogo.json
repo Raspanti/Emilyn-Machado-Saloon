@@ -1,0 +1,521 @@
+{
+  "perfil": "https://www.instagram.com/emelynmachado/",
+  "consulta": "2026-11-21",
+  "escopo": "Seleção inicial de conteúdo público; não é inventário completo do perfil.",
+  "nome_observado": "Emelyn Machado",
+  "observacao_nome": "O projeto local usa Emilyn em caminhos e alguns textos; nenhuma alteração de nome foi realizada.",
+  "itens": [
+    {
+      "id": "luzes-retoque-raiz-2026-09-15",
+      "categorias": [
+        "cabelo/luzes",
+        "cabelo/coloracao/retoque-de-raiz",
+        "cabelo/coloracao/cobertura-de-brancos"
+      ],
+      "url": "https://www.instagram.com/emelynmachado/p/DdRvfcpNXQ3/",
+      "arquivo": "cabelo/luzes/2026-09-15-luzes-retoque-raiz.jpg",
+      "dimensoes": [
+        1440,
+        1920
+      ],
+      "confirmacao": "Legenda confirma retoque da raiz e luzes. Foto de resultado vista individualmente.",
+      "uso_sugerido": "Galeria de luzes e coloração; manter crédito e marca do salão.",
+      "arquivos": [
+        "cabelo/luzes/2026-09-15-luzes-retoque-raiz.jpg"
+      ],
+      "copias_por_servico": [
+        "cabelo/coloracao/retoque-de-raiz/2026-09-15-luzes-retoque-raiz.jpg",
+        "cabelo/coloracao/cobertura-de-brancos/2026-09-15-luzes-retoque-raiz.jpg"
+      ],
+      "validacao_arquivos": [
+        {
+          "arquivo": "cabelo/luzes/2026-09-15-luzes-retoque-raiz.jpg",
+          "dimensoes": [
+            1440,
+            1920
+          ],
+          "bytes": 731068,
+          "sha256": "a76dab3c1a08a358839441ecde0af00672ec3ae0eac61f83a508c14cd2c8d208"
+        },
+        {
+          "arquivo": "cabelo/coloracao/retoque-de-raiz/2026-09-15-luzes-retoque-raiz.jpg",
+          "dimensoes": [
+            1440,
+            1920
+          ],
+          "bytes": 731068,
+          "sha256": "a76dab3c1a08a358839441ecde0af00672ec3ae0eac61f83a508c14cd2c8d208"
+        },
+        {
+          "arquivo": "cabelo/coloracao/cobertura-de-brancos/2026-09-15-luzes-retoque-raiz.jpg",
+          "dimensoes": [
+            1440,
+            1920
+          ],
+          "bytes": 731068,
+          "sha256": "a76dab3c1a08a358839441ecde0af00672ec3ae0eac61f83a508c14cd2c8d208"
+        }
+      ]
+    },
+    {
+      "id": "antes-depois-2026-10-21",
+      "categorias": [
+        "cabelo/corte",
+        "cabelo/luzes",
+        "cabelo/tratamento/hidratacao",
+        "antes-e-depois"
+      ],
+      "url": "https://www.instagram.com/emelynmachado/p/Dewo1IftMDp/",
+      "arquivo": "antes-e-depois/2026-10-21-corte-luzes-hidratacao.jpg",
+      "confirmacao": "Legenda confirma corte, retoque de luzes e hidratação; montagem de antes/depois vista na grade.",
+      "uso_sugerido": "Referência principal de transformação. Uma foto pode receber várias etiquetas.",
+      "arquivos": [
+        "antes-e-depois/2026-10-21-corte-luzes-hidratacao.jpg"
+      ],
+      "copias_por_servico": [
+        "cabelo/corte/2026-10-21-corte-luzes-hidratacao.jpg",
+        "cabelo/luzes/2026-10-21-corte-luzes-hidratacao.jpg",
+        "cabelo/tratamento/hidratacao/2026-10-21-corte-luzes-hidratacao.jpg"
+      ],
+      "validacao_arquivos": [
+        {
+          "arquivo": "antes-e-depois/2026-10-21-corte-luzes-hidratacao.jpg",
+          "dimensoes": [
+            1350,
+            1688
+          ],
+          "bytes": 381962,
+          "sha256": "4a90ebd202af205a94b793f292450d11c692b88a378f86a4277a8ffd83976a27"
+        },
+        {
+          "arquivo": "cabelo/corte/2026-10-21-corte-luzes-hidratacao.jpg",
+          "dimensoes": [
+            1350,
+            1688
+          ],
+          "bytes": 381962,
+          "sha256": "4a90ebd202af205a94b793f292450d11c692b88a378f86a4277a8ffd83976a27"
+        },
+        {
+          "arquivo": "cabelo/luzes/2026-10-21-corte-luzes-hidratacao.jpg",
+          "dimensoes": [
+            1350,
+            1688
+          ],
+          "bytes": 381962,
+          "sha256": "4a90ebd202af205a94b793f292450d11c692b88a378f86a4277a8ffd83976a27"
+        },
+        {
+          "arquivo": "cabelo/tratamento/hidratacao/2026-10-21-corte-luzes-hidratacao.jpg",
+          "dimensoes": [
+            1350,
+            1688
+          ],
+          "bytes": 381962,
+          "sha256": "4a90ebd202af205a94b793f292450d11c692b88a378f86a4277a8ffd83976a27"
+        }
+      ]
+    },
+    {
+      "id": "corte-2025-12-15",
+      "categorias": [
+        "cabelo/corte"
+      ],
+      "url": "https://www.instagram.com/emelynmachado/p/DSSUVd8EXGS/",
+      "arquivo": "cabelo/corte/2025-12-15-corte-01-depois.jpg",
+      "confirmacao": "Quatro imagens do carrossel baixadas: três ângulos do corte finalizado e uma foto anterior com cabelo mais longo. Mantida a marca original.",
+      "uso_sugerido": "Galeria de cortes; conferir também as outras fotos do carrossel.",
+      "arquivos": [
+        "cabelo/corte/2025-12-15-corte-01-depois.jpg",
+        "cabelo/corte/2025-12-15-corte-02-depois.jpg",
+        "cabelo/corte/2025-12-15-corte-03-costas.jpg",
+        "cabelo/corte/2025-12-15-corte-04-antes.jpg"
+      ],
+      "copias_por_servico": [],
+      "validacao_arquivos": [
+        {
+          "arquivo": "cabelo/corte/2025-12-15-corte-01-depois.jpg",
+          "dimensoes": [
+            1080,
+            1440
+          ],
+          "bytes": 232650,
+          "sha256": "2160e6728334e5bb29657410528e1b7144020c4b83bf91bab6b227aea365ab00"
+        },
+        {
+          "arquivo": "cabelo/corte/2025-12-15-corte-02-depois.jpg",
+          "dimensoes": [
+            1080,
+            1438
+          ],
+          "bytes": 221903,
+          "sha256": "366d21a51f19db4ccdd7eb41122d9dbed73c231f2ad7f35bb26cb43aac035dec"
+        },
+        {
+          "arquivo": "cabelo/corte/2025-12-15-corte-03-costas.jpg",
+          "dimensoes": [
+            1080,
+            1438
+          ],
+          "bytes": 220849,
+          "sha256": "ef715d2cc0f3500bd56095b33d593bddcba962c9b70d0451562af23fe6c0ec15"
+        },
+        {
+          "arquivo": "cabelo/corte/2025-12-15-corte-04-antes.jpg",
+          "dimensoes": [
+            1080,
+            1438
+          ],
+          "bytes": 277189,
+          "sha256": "1b09c1e47478d9767caa910e11c51be2b5267fed8f9366772dc15c7d9441e95c"
+        }
+      ]
+    },
+    {
+      "id": "sobrancelhas-2025-12-09",
+      "categorias": [
+        "sobrancelhas/design"
+      ],
+      "url": "https://www.instagram.com/emelynmachado/p/DSC5sG6Edew/",
+      "arquivo": "sobrancelhas/design/2025-12-09-design-em-atendimento.jpg",
+      "confirmacao": "Legenda e imagem individual confirmadas: atendimento de sobrancelhas com pinça. Arquivo baixado sem recorte ou edição.",
+      "uso_sugerido": "Galeria de design de sobrancelhas e bastidores do atendimento.",
+      "arquivos": [
+        "sobrancelhas/design/2025-12-09-design-em-atendimento.jpg"
+      ],
+      "copias_por_servico": [],
+      "validacao_arquivos": [
+        {
+          "arquivo": "sobrancelhas/design/2025-12-09-design-em-atendimento.jpg",
+          "dimensoes": [
+            1439,
+            1917
+          ],
+          "bytes": 393312,
+          "sha256": "1588c3391e9495d96d1ba1305c070987804559d1ae8274b242b82bfc0563325b"
+        }
+      ]
+    },
+    {
+      "id": "manicure-cinza-prata-2025-09-05",
+      "categorias": [
+        "unhas/manicure"
+      ],
+      "url": "https://www.instagram.com/emelynmachado/p/DOOORddjS_p/",
+      "arquivo": "unhas/manicure/2025-09-05-manicure-cinza-prata.jpg",
+      "arquivos": [
+        "unhas/manicure/2025-09-05-manicure-cinza-prata.jpg"
+      ],
+      "confirmacao": "Foto de mãos esmaltadas conferida; legenda confirma unhas e manicure. Publicação do feed de 05/09/2025.",
+      "copias_por_servico": [],
+      "validacao_arquivos": [
+        {
+          "arquivo": "unhas/manicure/2025-09-05-manicure-cinza-prata.jpg",
+          "dimensoes": [
+            739,
+            985
+          ],
+          "bytes": 171578,
+          "sha256": "e466b9903688f0c15c5f928671561d68cbd1a01a621e6dc091b6bba29c936044"
+        }
+      ],
+      "uso_no_site": "/images/galeria/2025-09-05-manicure-cinza-prata.jpg"
+    },
+    {
+      "id": "escova-DKjtjnJOd8l",
+      "categorias": [
+        "cabelo/escova"
+      ],
+      "url": "https://www.instagram.com/emelynmachado/p/DKjtjnJOd8l/",
+      "arquivo": "cabelo/escova/escova-finalizacao-DKjtjnJOd8l.jpg",
+      "arquivos": [
+        "cabelo/escova/escova-finalizacao-DKjtjnJOd8l.jpg"
+      ],
+      "confirmacao": "Legenda cita explicitamente escova, design de sobrancelhas e tintura; imagem mostra o cabelo finalizado. Não classificada apenas pela aparência.",
+      "copias_por_servico": [],
+      "validacao_arquivos": [
+        {
+          "arquivo": "cabelo/escova/escova-finalizacao-DKjtjnJOd8l.jpg",
+          "dimensoes": [
+            1350,
+            1688
+          ],
+          "bytes": 530276,
+          "sha256": "b0b5479e2a666a3824a64452ebef7b1116805e5bde2eb5d2596b35544b53ce95"
+        }
+      ],
+      "uso_no_site": "/images/galeria/escova-finalizacao-DKjtjnJOd8l.jpg"
+    },
+    {
+      "id": "manicure-azul-destaque",
+      "categorias": [
+        "unhas/manicure"
+      ],
+      "url": "https://www.instagram.com/stories/highlights/17967833539104005/",
+      "arquivo": "unhas/manicure/destaque-manicure-azul.jpg",
+      "arquivos": [
+        "unhas/manicure/destaque-manicure-azul.jpg"
+      ],
+      "confirmacao": "Foto de manicure azul vista no destaque Unhas. Story contém enquete e tem 320x569; preservado somente como referência, sem uso no site.",
+      "copias_por_servico": [],
+      "validacao_arquivos": [
+        {
+          "arquivo": "unhas/manicure/destaque-manicure-azul.jpg",
+          "dimensoes": [
+            320,
+            569
+          ],
+          "bytes": 16867,
+          "sha256": "3c9a73fb09c907e76d125db4a13888feb39cc2b5b162a398a8144f09956b83cb"
+        }
+      ],
+      "uso_no_site": false
+    },
+    {
+      "id": "oleo-elixir-ilumina-2025-07-03",
+      "categorias": [
+        "produtos"
+      ],
+      "url": "https://www.instagram.com/emelynmachado/reel/DLpjQtvuZDJ/",
+      "arquivo": "produtos/2025-07-03-oleo-elixir-ilumina.jpg",
+      "arquivos": [
+        "produtos/2025-07-03-oleo-elixir-ilumina.jpg"
+      ],
+      "dimensoes": [
+        900,
+        1600
+      ],
+      "confirmacao": "Capa fotográfica do reel mostra o frasco TOCTUS Óleo Elixir Ilumina; legenda confirma a indicação e venda no salão em 03/07/2025. Não confirma estoque atual.",
+      "copias_por_servico": [],
+      "validacao_arquivos": [
+        {
+          "arquivo": "produtos/2025-07-03-oleo-elixir-ilumina.jpg",
+          "dimensoes": [
+            900,
+            1600
+          ],
+          "bytes": 124319,
+          "sha256": "35c1e281c38261a0828eb52fd0742c67dfd23cf4b54a4cd4bbf0db1ee3220455"
+        }
+      ],
+      "uso_no_site": "/images/galeria/2025-07-03-oleo-elixir-ilumina.jpg"
+    },
+    {
+      "id": "2024-08-21-corte-escova-modelada-ruivo",
+      "categorias": [
+        "cabelo/escova"
+      ],
+      "url": "https://www.instagram.com/emelynmachado/p/C-7k-A6u7vA/",
+      "arquivo": "cabelo/escova/2024-08-21-corte-escova-modelada-ruivo.jpg",
+      "arquivos": [
+        "cabelo/escova/2024-08-21-corte-escova-modelada-ruivo.jpg"
+      ],
+      "dimensoes": [
+        1440,
+        1800
+      ],
+      "confirmacao": "Legenda cita expressamente corte e escova modelada; primeiro quadro do carrossel.",
+      "copias_por_servico": [],
+      "validacao_arquivos": [
+        {
+          "arquivo": "cabelo/escova/2024-08-21-corte-escova-modelada-ruivo.jpg",
+          "dimensoes": [
+            1440,
+            1800
+          ],
+          "bytes": 423266,
+          "sha256": "48ff3f4f9a5a015b78ac85b3af68bfa5e42524a2206d64a632e5e247ba604341"
+        }
+      ],
+      "uso_no_site": "/images/galeria/2024-08-21-corte-escova-modelada-ruivo.jpg"
+    },
+    {
+      "id": "2021-04-01-manicure-branca-em-atendimento",
+      "categorias": [
+        "unhas/manicure"
+      ],
+      "url": "https://www.instagram.com/emelynmachado/p/CNH30nyDylA/?img_index=2",
+      "arquivo": "unhas/manicure/2021-04-01-manicure-branca-em-atendimento.jpg",
+      "arquivos": [
+        "unhas/manicure/2021-04-01-manicure-branca-em-atendimento.jpg"
+      ],
+      "dimensoes": [
+        853,
+        568
+      ],
+      "confirmacao": "Segundo quadro do carrossel CNH30nyDylA, que anuncia cabelo, unhas e sobrancelhas; imagem mostra inequivocamente manicure nas mãos.",
+      "copias_por_servico": [],
+      "validacao_arquivos": [
+        {
+          "arquivo": "unhas/manicure/2021-04-01-manicure-branca-em-atendimento.jpg",
+          "dimensoes": [
+            853,
+            568
+          ],
+          "bytes": 61652,
+          "sha256": "9f9a33540557b4be9edc244f4c945e770e521aa618a0cfa10a2f22e25caf4149"
+        }
+      ],
+      "uso_no_site": "/images/galeria/2021-04-01-manicure-branca-em-atendimento.jpg"
+    },
+    {
+      "id": "2024-07-05-mechas-morena-iluminada",
+      "categorias": [
+        "cabelo/luzes"
+      ],
+      "url": "https://www.instagram.com/emelynmachado/p/C9CwzQPuDES/",
+      "arquivo": "cabelo/luzes/2024-07-05-mechas-morena-iluminada.jpg",
+      "arquivos": [
+        "cabelo/luzes/2024-07-05-mechas-morena-iluminada.jpg"
+      ],
+      "dimensoes": [
+        1440,
+        1800
+      ],
+      "confirmacao": "Legenda confirma mechas iluminadas; primeiro quadro do carrossel C9CwzQPuDES.",
+      "copias_por_servico": [],
+      "validacao_arquivos": [
+        {
+          "arquivo": "cabelo/luzes/2024-07-05-mechas-morena-iluminada.jpg",
+          "dimensoes": [
+            1440,
+            1800
+          ],
+          "bytes": 424670,
+          "sha256": "a98b5e675ff43501d7df53ddccc34b973a88dcd810b3178f8cfe1919e4032de1"
+        }
+      ],
+      "uso_no_site": "/images/galeria/2024-07-05-mechas-morena-iluminada.jpg"
+    },
+    {
+      "id": "2024-08-30-corte-chanel-resultado",
+      "categorias": [
+        "cabelo/corte"
+      ],
+      "url": "https://www.instagram.com/emelynmachado/p/C_StMl2JXR1/",
+      "arquivo": "cabelo/corte/2024-08-30-corte-chanel-resultado.jpg",
+      "arquivos": [
+        "cabelo/corte/2024-08-30-corte-chanel-resultado.jpg"
+      ],
+      "dimensoes": [
+        1440,
+        1800
+      ],
+      "confirmacao": "Legenda identifica corte personalizado e hashtag cortechanel; primeiro quadro é o resultado, não o antes.",
+      "copias_por_servico": [],
+      "validacao_arquivos": [
+        {
+          "arquivo": "cabelo/corte/2024-08-30-corte-chanel-resultado.jpg",
+          "dimensoes": [
+            1440,
+            1800
+          ],
+          "bytes": 376191,
+          "sha256": "c3ec813e3102b4deb7d0be82eb8d21b752311e2a4266c8cb52d8b2cce03ab8b7"
+        }
+      ],
+      "uso_no_site": "/images/galeria/2024-08-30-corte-chanel-resultado.jpg"
+    },
+    {
+      "id": "2024-07-01-corte-coloracao-curto",
+      "categorias": [
+        "cabelo/coloracao"
+      ],
+      "url": "https://www.instagram.com/emelynmachado/p/C84RG1nuz7P/",
+      "arquivo": "cabelo/coloracao/2024-07-01-corte-coloracao-curto.jpg",
+      "arquivos": [
+        "cabelo/coloracao/2024-07-01-corte-coloracao-curto.jpg"
+      ],
+      "dimensoes": [
+        1440,
+        1800
+      ],
+      "confirmacao": "Legenda de C84RG1nuz7P confirma novo corte e nova coloração; primeiro quadro do carrossel.",
+      "copias_por_servico": [],
+      "validacao_arquivos": [
+        {
+          "arquivo": "cabelo/coloracao/2024-07-01-corte-coloracao-curto.jpg",
+          "dimensoes": [
+            1440,
+            1800
+          ],
+          "bytes": 376059,
+          "sha256": "c87e911a588d553aae9e44721949ee481be46f756a39ebae1d903e30ff877c8e"
+        }
+      ],
+      "uso_no_site": "/images/galeria/2024-07-01-corte-coloracao-curto.jpg"
+    },
+    {
+      "id": "2025-09-05-manicure-cinza-prata-duas-maos",
+      "categorias": [
+        "unhas/manicure"
+      ],
+      "url": "https://www.instagram.com/emelynmachado/p/DOOORddjS_p/?img_index=2",
+      "arquivo": "unhas/manicure/2025-09-05-manicure-cinza-prata-duas-maos.jpg",
+      "arquivos": [
+        "unhas/manicure/2025-09-05-manicure-cinza-prata-duas-maos.jpg"
+      ],
+      "dimensoes": [
+        739,
+        985
+      ],
+      "confirmacao": "Segundo quadro do carrossel DOOORddjS_p; legenda confirma manicure cinza e prata. É outra imagem do mesmo atendimento.",
+      "copias_por_servico": [],
+      "validacao_arquivos": [
+        {
+          "arquivo": "unhas/manicure/2025-09-05-manicure-cinza-prata-duas-maos.jpg",
+          "dimensoes": [
+            739,
+            985
+          ],
+          "bytes": 214482,
+          "sha256": "e22b7fea1676eb571872d78f52a0bc311eaa04504900dc7d9b135c763b9b979a"
+        }
+      ],
+      "uso_no_site": "/images/galeria/2025-09-05-manicure-cinza-prata-duas-maos.jpg"
+    }
+  ],
+  "referencias_de_conteudo": [
+    {
+      "categoria": "cabelo/morena-iluminada",
+      "url": "https://www.instagram.com/emelynmachado/reel/DfX2CfWtR0N/",
+      "confirmacao": "Tema visível na capa do reel; não classificado como foto de resultado."
+    },
+    {
+      "categoria": "cabelo/cuidados-pos-alisamento",
+      "url": "https://www.instagram.com/emelynmachado/reel/DfkbYa0t4vb/",
+      "confirmacao": "Capa apresenta orientação sobre pintar após alisamento; não confirma execução de serviço."
+    },
+    {
+      "categoria": "cabelo/cuidados-frizz",
+      "url": "https://www.instagram.com/emelynmachado/reel/Dd365lztazG/",
+      "confirmacao": "Capa trata de cabelo sem frizz; referência de conteúdo, não prova de escova."
+    }
+  ],
+  "pendencias": [
+    {
+      "categoria": "unhas/pedicure",
+      "motivo": "Sem foto específica confirmada na amostra revisada; não reutilizar manicure."
+    },
+    {
+      "categoria": "massagem-corporal/depilacao",
+      "motivo": "Não encontrada imagem confirmada na amostra. Publicações de massagem capilar não comprovam massagem corporal."
+    }
+  ],
+  "nao_usar_como_portfolio": [
+    "Publicações pessoais e de família",
+    "Anúncios de vagas",
+    "Mensagens motivacionais em texto",
+    "Capas de reels explicativos sem resultado do serviço"
+  ],
+  "limites": "Pesquisa parcial do perfil e legendas; não representa inventário de todos os posts. Produto confirmado pela capa e legenda do reel DLpjQtvuZDJ. Pedicure, massagem corporal e depilação permanecem sem foto confirmada.",
+  "download_concluido_em": "2026-11-22",
+  "organizacao": "A mesma imagem pode constar em várias pastas de serviço. copias_por_servico identifica as cópias; o hash permite reconhecer duplicatas.",
+  "resumo": {
+    "publicacoes_ou_destaques": 13,
+    "imagens_distintas": 17,
+    "arquivos_por_pasta": 22,
+    "imagens_da_galeria_no_site": 16
+  },
+  "atualizacao_servicos": "2026-11-22"
+}

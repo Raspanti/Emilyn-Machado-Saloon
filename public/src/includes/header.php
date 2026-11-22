@@ -1,57 +1,36 @@
+<?php
+require_once __DIR__ . '/../bootstrap.php';
+$pageTitle = $pageTitle ?? 'Seu momento de cuidado';
+$navItems = ['index.php' => 'Início', 'servicos.php' => 'Serviços', 'galeria.php' => 'Galeria', 'sobre.php' => 'Sobre nós'];
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEAW - Sistema de Adoção</title>
-    
-    <!-- Link do CSS com timestamp anti-cache no PHP -->
-    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
-    <script src="js/script.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta name="theme-color" content="#a7ad96">
+    <meta name="description" content="Conheça os serviços e encontre seu momento de cuidado no salão Emilyn Machado.">
+    <title><?= escapeHtml($pageTitle) ?> · <?= escapeHtml($site['name']) ?></title>
+    <link rel="stylesheet" href="/css/style.css?v=<?= substr(hash_file('sha256', __DIR__ . '/../../css/style.css'), 0, 12) ?>">
+    <?php if (!empty($agendaPage)): ?><link rel="stylesheet" href="/css/agenda.css?v=<?= substr(hash_file('sha256', __DIR__ . '/../../css/agenda.css'), 0, 12) ?>"><?php endif; ?>
+    <?php if (!empty($agendaPage) || !empty($bookingPage)): ?><link rel="stylesheet" href="/css/calendario.css?v=<?= substr(hash_file('sha256', __DIR__ . '/../../css/calendario.css'), 0, 12) ?>"><?php endif; ?>
+    <?php if (!empty($galleryPage)): ?><link rel="stylesheet" href="/css/galeria.css?v=<?= substr(hash_file('sha256', __DIR__ . '/../../css/galeria.css'), 0, 12) ?>"><?php endif; ?>
 </head>
+<body id="top" class="app-layout">
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="/index.php" aria-label="Emilyn Machado — início">
+            <span class="brand-monogram" aria-hidden="true">em<span>✦</span></span>
+            <span class="brand-copy"><span class="brand-name"><?= escapeHtml($site['name']) ?></span><span class="brand-subtitle"><?= escapeHtml($site['subtitle']) ?></span></span>
+        </a>
+        <nav id="nav" class="main-nav" aria-label="Navegação principal">
+            <?php foreach ($navItems as $href => $label): ?>
+                <a href="/<?= escapeHtml($href) ?>"<?= $currentPage === $href ? ' aria-current="page"' : '' ?>><?= escapeHtml($label) ?></a>
+            <?php endforeach; ?>
+            <a href="/agendamento.php" class="header-booking">Agende seu momento <?= renderIcon('right') ?></a>
+        </nav>
+    </div>
+</header>
 
-<body class="app-layout">
-    <header id="header" class="navbar">
-        <div class="container">
-
-            <!-- 1. ESQUERDA: Logo -->
-            <div id="logo" class="logo">
-                <a href="index.php">
-                    <span class="logo-me">ME</span><span class="logo-aw">AW</span>
-                </a>
-            </div>
-
-            <!-- 2. CENTRO: Links de Navegação -->
-            <nav id="nav">
-                <button aria-label="Abrir Menu" id="btn-mobile" aria-expanded="false" aria-controls="menu">
-                    <span id="hamburguer"></span>
-                </button>   
-
-                <ul id="menu">   
-                    <li><a href="futuro.php">adote</a></li>
-                    <li><a href="cadastrar-pet.php">doe</a></li>
-                    <li><a href="info.php">info</a></li>  
-                
-                    <!-- Reutilização dos itens no celular -->
-                    <?php require __DIR__ . '/user-menu-items.php'; ?>
-                </ul>
-            </nav>
-
-            <!-- 3. DIREITA: Bloco de Login + Popup Flutuante -->
-            <div id="login" class="login">
-                <button id="login-button" type="button" aria-label="Menu do Usuário" class="login-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
-                        <path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm146.5-204.5Q340-521 340-580t40.5-99.5Q421-720 480-720t99.5 40.5Q620-639 620-580t-40.5 99.5Q539-440 480-440t-99.5-40.5ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm100-95.5q47-15.5 86-44.5-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160q53 0 100-15.5ZM523-537q17-17 17-43t-17-43q-17-17-43-17t-43 17q-17 17-17 43t17 43q17 17 43 17t43-17Zm-43-43Zm0 360Z" />
-                    </svg>
-                </button>
-                
-                <div id="login-popup" class="login-popup">
-                    <ul>
-                        <!-- Reutilização dos itens no popup do desktop -->
-                        <?php require __DIR__ . '/user-menu-items.php'; ?>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-    </header>
+<?php require __DIR__ . '/bottom-nav.php'; ?>

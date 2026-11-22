@@ -25,3 +25,12 @@ yarn-debug.log*
 vendor/
 node_modules/
 dist/
+
+# Backups locais
+.dev-backups/
+
+# Credenciais de login Google, fora da raiz pública
+/config/google.local.php
+
+# Modelo de configuração para instalação limpa
+!/.env.agenda.example

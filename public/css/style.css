@@ -1,119 +1,213 @@
-/* ==========================================================================
-   1. IMPORTAÇÃO DE FONTES
-   ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@700&family=Fredoka:wght@600;700&display=swap');
+/* Base reaproveitada do MEAW: reset, variáveis e layout de página.
+   Aqui as regras padrão são para celular; min-width amplia para desktop. */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap');
 
-/* ==========================================================================
-   2. VARIÁVEIS GLOBAIS (DESIGN TOKENS)
-   ========================================================================== */
 :root {
-    /* --- CORES (Modo Claro Padrão) --- */
-    --bg-dark: oklch(0.92 0.02 264);
-    --bg: oklch(0.96 0.02 264);
-    --bg-light: oklch(1 0.02 264);
-    --text: oklch(0.15 0.04 264);
-    --text-muted: oklch(0.4 0.04 264);
-    --border: oklch(0.6 0.04 264);
-    --border-muted: oklch(0.7 0.04 264);
-    --primary: oklch(0.4 0.1 264);
-    --accent: #45e0f7;
+    --bottom-nav-offset: 0px;
+    --bottom-nav-space: calc(88px + env(safe-area-inset-bottom, 0px));
+    --bg-light: #faf9f6;
+    --white: #ffffff;
+    --sage: #a7ad96;
+    --sage-light: #e9ecdf;
+    --olive: #566048;
+    --text: #2f352b;
+    --text-muted: #666c60;
+    --border-muted: #dedfd5;
+    --radius: 14px;
+    --space: 20px;
+    --font-family-main: 'DM Sans', sans-serif;
+    --font-family-title: 'Cormorant Garamond', Georgia, serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; color-scheme: light; scroll-padding-bottom: calc(var(--bottom-nav-space) + var(--bottom-nav-offset)); }
+body { margin: 0; background: var(--bg-light); color: var(--text); font-family: var(--font-family-main); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+body.app-layout { display: flex; flex-direction: column; min-height: 100svh; padding-bottom: calc(var(--bottom-nav-space) + var(--bottom-nav-offset)); }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+svg, img { display: block; max-width: 100%; }
+h1, h2, h3, p { margin: 0; }
+h1, h2 { font-family: var(--font-family-title); font-weight: 500; line-height: 1.06; letter-spacing: -.035em; }
+h1 { font-size: clamp(2.65rem, 10vw, 4.5rem); }
+h2 { font-size: 2rem; }
+h1 em, h2 em { color: var(--olive); font-weight: 400; }
+p { color: var(--text-muted); font-size: .9rem; }
+:focus-visible { outline: 3px solid var(--olive); outline-offset: 5px; }
+.icon { width: 24px; height: 24px; flex-shrink: 0; }
+.container { width: min(100% - 2 * var(--space), 1160px); margin-inline: auto; }
+.page-main { flex: 1; }
+.skip-link { position: fixed; top: 8px; left: 8px; padding: 8px 16px; background: var(--white); z-index: 100; transform: translateY(-160%); }
+.skip-link:focus { transform: translateY(0); }
+.eyebrow { display: block; margin-bottom: 12px; color: var(--olive); font-size: .65rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.text-link { display: inline-flex; align-items: center; gap: 14px; padding-block: 8px; font-size: .8rem; font-weight: 600; color: var(--olive); border-bottom: 1px solid var(--sage); }
+.text-link .icon { width: 18px; }
+.button { display: inline-flex; justify-content: center; align-items: center; gap: 24px; min-height: 50px; padding: 12px 25px; border-radius: 7px; background: var(--olive); color: var(--white); font-size: .85rem; font-weight: 500; transition: background .2s; }
+.button:hover { background: #3d4732; }
 
-    /* --- TIPOGRAFIA --- */
-    --font-family-main: 'Plus Jakarta Sans', sans-serif;
-    --font-size-sm: 0.875rem; /* 14px */
-    --font-size-base: 1rem;    /* 16px */
-    --font-size-lg: 1.25rem;  /* 20px */
-    --font-size-xl: 1.75rem;  /* 28px */
-    --font-size-2xl: 2.5rem;  /* 40px */
+/* Celular: marca no topo e navegação na base. Desktop: links no header. */
+.site-header { background: var(--sage); position: relative; z-index: 20; }
+.header-inner { display: flex; justify-content: space-between; align-items: center; min-height: 82px; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-monogram { display: flex; align-items: flex-start; gap: 3px; color: #fff; font: italic 2.7rem/.9 var(--font-family-title); letter-spacing: -.12em; }
+.brand-monogram > span { font: .6rem/1 sans-serif; padding-top: 2px; letter-spacing: 0; }
+.brand-copy { display: flex; flex-direction: column; padding-left: 11px; border-left: 1px solid #ffffff66; }
+.brand-name { color: #fff; font: italic 1.25rem/1.2 var(--font-family-title); }
+.brand-subtitle { font-size: .53rem; letter-spacing: .15em; text-transform: uppercase; color: #293123; }
+.main-nav { display: none; }
+.main-nav a { display: flex; align-items: center; min-height: 46px; font-size: .85rem; padding-inline: 12px; border-radius: 5px; }
+.main-nav a:hover, .main-nav a[aria-current] { background: #ffffff30; }
+.main-nav .header-booking { display: none; }
 
-    --line-height-tight: 1.1;
-    --line-height-normal: 1.5;
+/* Início: a grade de duas colunas segue os esboços fornecidos. */
+.home-intro { padding-top: 30px; }
+.intro-copy { padding: 0 0 30px; }
+.intro-copy h1 { font-size: clamp(2.65rem, 10vw, 4.8rem); }
+.intro-copy h1 br:first-of-type { display: none; }
+.intro-copy p { max-width: 280px; margin-top: 16px; }
+.intro-link { display: none; }
+.section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.section-heading h2 { font-family: var(--font-family-main); font-size: .9rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.3; }
+.section-heading > span { color: var(--text-muted); font-size: .6rem; }
+.category-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 12px; }
+.category-card { display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: 10px; background: #eeeee6; transition: transform .2s, box-shadow .2s; }
+.category-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px #3d473214; }
+.category-art { position: relative; display: grid; place-items: center; aspect-ratio: 1.22; overflow: hidden; background: #aeb49d; color: #4f5d42; }
+.category-art > .icon { width: 48px; height: 48px; z-index: 1; stroke-width: 1.1; }
+.category-art::before, .detail-art::before { content: ''; position: absolute; width: 85%; aspect-ratio: 1; border-radius: 50%; border: 1px solid #ffffff40; transform: translate(25%, 25%); }
+.art-orbit { position: absolute; width: 70%; aspect-ratio: 1; border: 1px solid #ffffff38; border-radius: 50%; transform: translate(-40%, -40%); }
+.art-sobrancelha { background: #e1d7cb; color: #74624f; }
+.art-unhas { background: #c7cbb8; color: #5f674d; }
+.art-massagem { background: #d9dcca; color: #68704f; }
+.art-depilacao { background: #d9c5b6; color: #7c5c48; }
+.art-produtos { background: #b5bba8; color: #4c5b43; }
+.category-caption { display: flex; align-items: center; justify-content: space-between; gap: 7px; min-height: 43px; padding: 9px 11px; font-size: .8rem; line-height: 1.3; }
+.category-caption .icon { width: 15px; height: 15px; color: var(--olive); }
+.care-note { display: flex; gap: 22px; border-top: 1px solid var(--border-muted); margin-top: 40px; padding-block: 32px 36px; }
+.note-star { color: var(--sage); font-size: 2.8rem; line-height: 1; }
+.care-note h2 { font-size: 1.9rem; margin-bottom: 12px; }
+.care-note p { max-width: 440px; margin-bottom: 12px; }
 
-    /* --- ESPAÇAMENTOS (Grid de 8px) --- */
-    --space-1: 0.25rem; /* 4px */
-    --space-2: 0.5rem;  /* 8px */
-    --space-3: 1rem;    /* 16px */
-    --space-4: 1.5rem;  /* 24px */
-    --space-5: 2rem;    /* 32px */
+/* Páginas internas compartilham os mesmos componentes. */
+.inner-page { padding-top: 25px; padding-bottom: 40px; }
+.back-link { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; color: var(--text-muted); font-size: .74rem; margin-bottom: 18px; }
+.back-link .icon { width: 17px; }
+.page-heading { margin-bottom: 28px; }
+.page-heading p { max-width: 480px; margin-top: 16px; }
+.page-heading .button { margin-top: 22px; }
+.title-dot { color: var(--sage); }
+.service-detail { display: grid; gap: 28px; }
+.detail-art { position: relative; display: grid; place-items: center; overflow: hidden; min-height: 240px; border-radius: var(--radius); background: var(--sage-light); }
+.detail-art > .icon { width: 100px; height: 100px; stroke-width: .8; }
+.detail-art .art-label { position: absolute; bottom: 20px; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; }
+.detail-copy p { margin: 18px 0 24px; max-width: 460px; }
+.detail-copy .button { width: 100%; }
+.booking-note { display: block; margin-top: 12px; color: var(--text-muted); font-size: .7rem; }
+.about-layout { display: grid; gap: 28px; }
+.about-art { min-height: 240px; display: flex; align-items: center; justify-content: center; flex-direction: column; border-radius: 160px 160px 8px 8px; background: var(--sage-light); color: var(--olive); }
+.about-monogram { font: italic 7rem/1 var(--font-family-title); letter-spacing: -.1em; padding-right: 15px; }
+.about-art > span:last-child { text-transform: uppercase; font-size: .6rem; letter-spacing: .2em; }
+.about-contact { text-align: center; padding-top: 35px; border-top: 1px solid var(--border-muted); }
+.about-contact .text-link { margin-top: 20px; }
+.contact-grid { display: grid; gap: 16px; }
+.contact-card { padding: 26px; border: 1px solid var(--border-muted); border-radius: var(--radius); background: var(--white); }
+.contact-number { font-size: .7rem; color: var(--olive); display: block; margin-bottom: 30px; }
+.contact-card h2 { font-size: 1.85rem; }
+.contact-card p { margin: 14px 0 20px; }
+.coming-soon { display: inline-block; font-size: .75rem; color: var(--olive); background: var(--sage-light); padding: 8px 14px; border-radius: 5px; }
+.contact-card .setup-note { font-size: .73rem; margin-bottom: 0; }
+.contact-address { display: flex; align-items: center; gap: 10px; }
+.selected-service { display: flex; align-items: center; gap: 16px; padding: 18px; margin-bottom: 24px; border-radius: 10px; background: var(--sage-light); }
+.selected-service div { display: flex; flex-direction: column; }
+.selected-service span { font-size: .7rem; color: var(--text-muted); }
+.selected-service strong { font-size: .9rem; }
+.selected-service > a { margin-left: auto; font-size: .75rem; text-decoration: underline; padding: 10px 0; }
 
-    /* --- BORDAS --- */
-    --radius-sm: 8px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
-    --radius-full: 9999px;
+/* Espaço no body impede que a barra fixa cubra o final da página.
+   safe-area protege a área de gestos em celulares com recorte na tela. */
+.bottom-nav { position: fixed; bottom: var(--bottom-nav-offset); left: 0; right: 0; z-index: 1000; display: grid; grid-template-columns: repeat(3, 1fr); align-items: end; min-height: 72px; padding: 5px 16px calc(9px + env(safe-area-inset-bottom)); background: var(--sage); border-top: 1px solid #ffffff55; box-shadow: 0 -5px 22px #30352612; }
+.bottom-nav > a { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 2px; min-height: 50px; font-size: .62rem; color: #303b28; }
+.bottom-nav > a > .icon { width: 23px; height: 23px; }
+.bottom-nav > a[aria-current] { font-weight: 700; }
+.home-disc { display: grid; place-items: center; width: 53px; height: 53px; margin-top: -25px; border-radius: 50%; background: var(--olive); color: #fff; border: 4px solid var(--bg-light); }
+.home-disc .icon { width: 25px; height: 25px; }
+.site-footer { border-top: 1px solid var(--border-muted); padding: 25px 0; }
+.footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+.footer-name { font: italic 1.35rem var(--font-family-title); color: var(--olive); }
+.footer-inner p { font-size: .7rem; margin-top: 4px; }
+.footer-inner > a { display: flex; align-items: center; gap: 10px; font-size: .72rem; }
+.footer-inner > a .icon { width: 17px; }
+.footer-inner small { font-size: .6rem; color: var(--text-muted); width: 100%; }
+
+@media (min-width: 600px) {
+    :root { --space: 32px; }
+    .home-intro { padding-top: 48px; }
+    .home-catalog { max-width: 620px; }
+    .category-grid { gap: 20px; }
+    .category-art { aspect-ratio: 1.4; }
+    .category-caption { font-size: .95rem; padding: 13px 16px; }
+    .service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .service-detail { grid-template-columns: 1fr 1fr; align-items: center; gap: 35px; }
+    .detail-art { min-height: 360px; }
+    .detail-copy .button { width: auto; }
+    .about-layout { grid-template-columns: .8fr 1.2fr; align-items: center; gap: 40px; }
+    .about-art { min-height: 360px; }
+}
+@media (min-width: 900px) {
+    html { scroll-padding-bottom: 0; }
+    body.app-layout { padding-bottom: 0; }
+    .bottom-nav { display: none; }
+    .header-inner { min-height: 100px; }
+    .brand-name { font-size: 1.5rem; }
+    .brand-monogram { font-size: 3.4rem; }
+    .main-nav { position: static; display: flex; flex-direction: row; gap: 10px; padding: 0; border: none; box-shadow: none; background: none; }
+    .main-nav a { font-size: .75rem; padding-inline: 12px; }
+    .main-nav .header-booking { display: flex; gap: 10px; padding-inline: 18px; background: var(--olive); color: white; margin-left: 12px; }
+    .header-booking .icon { width: 17px; }
+    .home-intro { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 60px; padding-block: 66px; }
+    .intro-copy { padding: 0; }
+    .intro-copy h1 { font-size: clamp(3.5rem, 5.2vw, 5.3rem); }
+    .intro-copy h1 br:first-of-type { display: block; }
+    .intro-copy p { margin-top: 25px; max-width: 300px; }
+    .intro-link { display: inline-flex; margin-top: 25px; }
+    .eyebrow { font-size: .7rem; }
+    .section-heading { margin-bottom: 22px; }
+    .section-heading > span { font-size: .67rem; }
+    .category-grid { gap: 18px; }
+    .category-art { aspect-ratio: 1.65; }
+    .category-art > .icon { width: 52px; height: 52px; }
+    .care-note { padding-block: 45px; margin-top: 0; justify-content: center; gap: 60px; }
+    .care-note h2 { font-size: 2.6rem; }
+    .note-star { font-size: 4rem; }
+    .inner-page { padding-top: 38px; padding-bottom: 70px; }
+    .page-heading { margin-bottom: 38px; }
+    .inner-page > .category-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .service-detail { gap: 75px; }
+    .detail-art { min-height: 440px; }
+    .detail-art > .icon { width: 150px; height: 150px; }
+    .detail-copy p { font-size: 1rem; }
+    .about-layout { gap: 90px; margin-bottom: 60px; }
+    .about-art { min-height: 450px; }
+    .contact-page > .page-heading { max-width: 650px; }
+    .contact-card { padding: 36px; }
+    .footer-inner small { width: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
 }
 
-/* TEMA ESCURO ATIVADO PELO JS */
-body.darkmode {
-    --bg-dark: oklch(0.1 0.02 264);
-    --bg: oklch(0.15 0.02 264);
-    --bg-light: oklch(0.2 0.02 264);
-    --text: oklch(0.96 0.04 264);
-    --text-muted: oklch(0.76 0.04 264);
-    --border: oklch(0.4 0.04 264);
-    --border-muted: oklch(0.3 0.04 264);
-    --primary: oklch(0.76 0.1 264);
-    color-scheme: dark;
-}
+/* Acesso à galeria na página inicial. */
+.gallery-invite { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding-block: 32px; border-top: 1px solid var(--border-muted); }
+.gallery-invite p { font-size: 1rem; margin-top: 12px; }
 
-/* ==========================================================================
-   3. RESET MODERNO UNIVERSAL
-   ========================================================================== */
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    color-scheme: light dark;
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: var(--font-family-main);
-    background-color: var(--bg-light);
-    color: var(--text);
-    line-height: var(--line-height-normal);
-    min-height: 100vh;
-}
-
-img, svg {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
-
-ul, ol {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* ==========================================================================
-   4. ESTRUTURA MACRO (GRID AREAS + CONTAINER)
-   ========================================================================== */
-.app-layout {
-    display: grid;
-    min-height: 100vh;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-        "header"
-        "main"
-        "footer";
-}
-
-header { grid-area: header; }
-main   { grid-area: main; }
-footer { grid-area: footer; }
-
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin-inline: auto;
-    padding-inline: var(--space-4);
-}
+/* Fotos reaproveitadas da galeria: o cartão mantém seu tamanho e suas bordas. */
+.category-art.has-photo::before, .detail-art.has-photo::before { content: none; }
+.category-art.has-photo > img, .detail-art.has-photo > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+.detail-art.has-photo { min-height: 320px; }
+.category-art.photo-comparison, .detail-art.photo-comparison { background: var(--white); }
+.category-art.photo-comparison > img, .detail-art.photo-comparison > img { object-fit: contain; object-position: center; }
+.detail-copy .service-photo-note { font-size: .875rem; color: var(--olive); padding-left: 12px; border-left: 2px solid var(--sage); }
+@media (min-width: 600px) { .detail-art.has-photo { min-height: 440px; } }
+@media (min-width: 900px) { .detail-art.has-photo { min-height: 540px; } }
