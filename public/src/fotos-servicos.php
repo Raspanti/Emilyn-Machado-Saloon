@@ -1,5 +1,4 @@
 <?php
-// Reutiliza os arquivos, descrições e dimensões já definidos na galeria.
 require_once __DIR__ . '/galeria.php';
 
 function buscarFotoGaleria(string $arquivo): ?array
@@ -8,7 +7,7 @@ function buscarFotoGaleria(string $arquivo): ?array
     foreach ($fotosGaleria as $foto) {
         if (basename($foto['arquivo']) === $arquivo) return $foto;
     }
-    return null; // Sem correspondência: o modelo mantém a ilustração.
+    return null;
 }
 
 $fotoMassagem = [
@@ -27,7 +26,6 @@ $fotoDepilacao = [
     'tipo' => 'Ilustrativa',
 ];
 
-// Categorias da página inicial e da página geral de serviços.
 $fotosCategorias = [
     'massagem' => $fotoMassagem,
     'depilacao' => $fotoDepilacao,
@@ -37,7 +35,6 @@ $fotosCategorias = [
     'sobrancelha' => buscarFotoGaleria('2025-12-09-design-em-atendimento.jpg'),
 ];
 
-// Fotos de serviços, incluindo referências ilustrativas identificadas.
 $fotosServicos = [
     'pedicure' => [
         'arquivo' => '/images/ilustrativas/pedicure.webp',

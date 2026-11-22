@@ -1,7 +1,7 @@
 <form class="agenda-form" action="<?= $editando ? '/atualizarAgenda.php' : '/agendar.php' ?>" method="post" data-agenda-form>
     <?= tokenAgenda() ?>
     <?php if ($editando): ?><input type="hidden" name="id" value="<?= (int) $agendaDados['id'] ?>"><?php endif; ?>
-    <div class="agenda-field agenda-wide"><label for="cliente">Cliente</label><input type="text" name="cliente" id="cliente" maxlength="50" required value="<?= escapeHtml($agendaDados['cliente'] ?? '') ?>" autocomplete="name"<?= !administradorAgenda() ? ' readonly' : '' ?>></div>
+    <div class="agenda-field agenda-wide"><label for="cliente">Cliente</label><input type="text" name="cliente" id="cliente" maxlength="100" required value="<?= escapeHtml($agendaDados['cliente'] ?? '') ?>" autocomplete="name"<?= !administradorAgenda() ? ' readonly' : '' ?>></div>
     <?php $servicoEscolhido = $servicoId ?? ($agendaDados['servico'] ?? '');
     $tipoFixo = $editando || !empty($veioDoServico); ?>
     <?php if ($tipoFixo): ?>

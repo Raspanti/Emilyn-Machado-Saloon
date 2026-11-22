@@ -5,7 +5,6 @@ module.exports = {
   files: ['/workspace/public/**/*.{php,html,css,js}'],
   watchOptions: { ignoreInitial: true },
   injectChanges: true,
-  // Inject after the opening body even when a PHP error truncates the response.
   snippetOptions: {
     rule: { match: /<body[^>]*>/i, fn: (snippet, match) => match + snippet }
   },

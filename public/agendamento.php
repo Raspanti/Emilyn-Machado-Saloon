@@ -24,8 +24,8 @@ try {
     $sql = 'SELECT id,cliente,data,hora,horaFim,tipo,obs,situacao FROM agenda WHERE cliente LIKE ?';
     $parametros = [$clienteLike];
     if (!$admin) {
-        $sql .= ' AND EXISTS (SELECT 1 FROM agenda_contas WHERE agenda_id=agenda.id AND google_sub=?)';
-        $parametros[] = usuarioLogado()['sub'];
+        $sql .= ' AND usuario_id=?';
+        $parametros[] = usuarioLogado()['id'];
     }
     if ($tipoPesquisa !== '') { $sql .= ' AND tipo=?'; $parametros[] = $tipoPesquisa; }
     if ($situPesquisa !== '') { $sql .= ' AND situacao=?'; $parametros[] = $situPesquisa; }
@@ -44,8 +44,6 @@ try {
     error_log('Agenda: ' . $exception->getMessage());
     $agendaErro = 'A agenda está indisponível. Verifique a configuração do banco local.';
 }
-// A seleção pública é apenas preenchimento; validarAgenda e verificarConflito
-// repetem as verificações no POST autenticado antes de qualquer gravação.
 $selecao = $_SESSION['agendaSelecao'] ?? [];
 unset($_SESSION['agendaSelecao']);
 if (!$agendaDados) {
@@ -54,7 +52,6 @@ if (!$agendaDados) {
         if ($valor !== '') $agendaDados[$campo] = $valor;
     }
 }
-// Recebe o serviço escolhido no catálogo; mantém os dois tipos do projeto enviado.
 $servicoId = campoAgenda($_GET, 'servico') ?: (campoAgenda($agendaDados, 'servico') ?: campoAgenda($selecao, 'servico'));
 $veioDoServico = array_key_exists('origemServico', $agendaDados)
     ? campoAgenda($agendaDados, 'origemServico') === '1'

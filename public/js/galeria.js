@@ -1,5 +1,3 @@
-// Os filtros são links normais tratados pelo PHP.
-// O JavaScript só acrescenta a ampliação sem sair da galeria.
 const galleryDialog = document.getElementById('gallery-dialog');
 const galleryImage = document.getElementById('gallery-dialog-image');
 const galleryTitle = document.getElementById('gallery-dialog-title');
@@ -7,7 +5,6 @@ const galleryOriginal = document.getElementById('gallery-original');
 
 function abrirFoto(event) {
     if (!galleryDialog || typeof galleryDialog.showModal !== 'function') return;
-    // Preserva Ctrl/Cmd+clique para abrir a foto diretamente em outra aba.
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     const link = event.currentTarget;

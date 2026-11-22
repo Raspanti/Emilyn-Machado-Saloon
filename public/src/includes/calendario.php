@@ -1,4 +1,4 @@
-<?php // Compartilhado pela página do serviço e pelo formulário autenticado.
+<?php
 $calDados = $agendaDados ?? [];
 ?>
 <div class="booking-calendar agenda-wide" data-booking-calendar data-edit-id="<?= !empty($editando) ? (int) ($calDados['id'] ?? 0) : 0 ?>">

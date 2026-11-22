@@ -28,6 +28,5 @@ function renderIcon(string $name, string $class = ''): string
     return '<svg class="icon ' . escapeHtml($class) . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . ($paths[$name] ?? $paths['spark']) . '</svg>';
 }
 
-// Sem dados inventados: preencha os canais confirmados em src/site.php.
 $site = require __DIR__ . '/site.php';
 $currentPage = basename($_SERVER['SCRIPT_NAME']);

@@ -1,5 +1,4 @@
 <?php
-// Conteúdo separado da apresentação: edite os serviços aqui, sem duplicar páginas.
 $categories = [
     'cabelo' => ['name' => 'Cabelo', 'icon' => 'hair', 'intro' => 'Um novo corte, uma nova cor, o seu jeito de ser.'],
     'sobrancelha' => ['name' => 'Sobrancelha', 'icon' => 'eye', 'intro' => 'Detalhes que valorizam a expressão do seu olhar.'],
@@ -28,7 +27,6 @@ function servicoUnicoDaCategoria(array $services, string $categoria): ?string
     return count($opcoes) === 1 ? array_key_first($opcoes) : null;
 }
 
-// Mantém as duas agendas atuais; serviços de unhas usam a agenda de manicure.
 function tipoAgendaServico(array $servico): string
 {
     return $servico['category'] === 'unhas' ? 'Manicure' : 'Cabeleireira';

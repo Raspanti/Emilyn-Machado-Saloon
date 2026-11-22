@@ -2,7 +2,6 @@
 require __DIR__ . '/src/bootstrap.php';
 require __DIR__ . '/src/galeria.php';
 
-// O filtro funciona no PHP, inclusive sem JavaScript.
 $servico = isset($_GET['servico']) && is_string($_GET['servico']) ? $_GET['servico'] : 'todos';
 if (!isset($servicosGaleria[$servico])) {
     http_response_code(404);
@@ -48,7 +47,6 @@ require __DIR__ . '/src/includes/header.php';
     <section class="gallery-contact"><h2>Encontrou uma inspiração?</h2><p>Converse com o salão sobre o resultado que você procura.</p><a class="button" href="/contato.php">Falar com o salão</a></section>
 </main>
 
-<!-- Dialog nativo: mantém o foco no visualizador e fecha com Escape. -->
 <dialog class="gallery-dialog" id="gallery-dialog" aria-labelledby="gallery-dialog-title">
     <div class="gallery-dialog-header"><h2 id="gallery-dialog-title">Foto ampliada</h2><button type="button" data-gallery-close aria-label="Fechar foto ampliada">Fechar</button></div>
     <img id="gallery-dialog-image" alt="">

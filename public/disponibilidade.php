@@ -18,7 +18,6 @@ try {
     }
     $ignorar = 0;
     if (!empty($_GET['editar'])) {
-        // Só exclui o próprio registro da consulta de edição após validar a conta.
         iniciarSessaoLogin();
         if (!usuarioLogado()) { http_response_code(401); echo json_encode(['erro' => 'Entre novamente para editar.']); exit; }
         require_once __DIR__ . '/src/agenda.php';
@@ -35,7 +34,6 @@ try {
     }
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
-    // Dados públicos mínimos: nunca envia nomes, observações, contas ou IDs.
     echo json_encode(['data' => $data, 'tipo' => $tipo, 'ocupados' => $intervalos]);
 } catch (DomainException $exception) {
     http_response_code(400); echo json_encode(['erro' => $exception->getMessage()]);

@@ -33,7 +33,7 @@ function validarAgenda(array $campos): array
     global $tiposAgenda, $services;
     $dados = [];
     foreach (['cliente', 'data', 'hora', 'horaFim', 'tipo', 'obs', 'servico'] as $campo) $dados[$campo] = campoAgenda($campos, $campo);
-    if ($dados['cliente'] === '' || mb_strlen($dados['cliente']) > 50) throw new DomainException('Informe um cliente com até 50 caracteres.');
+    if (preg_match('/\A.{1,100}\z/u', $dados['cliente']) !== 1) throw new DomainException('Informe um cliente com até 100 caracteres.');
     $data = DateTimeImmutable::createFromFormat('!Y-m-d', $dados['data']);
     if (!$data || $data->format('Y-m-d') !== $dados['data']) throw new DomainException('Informe uma data válida.');
     foreach (['hora', 'horaFim'] as $campo) {
@@ -47,7 +47,7 @@ function validarAgenda(array $campos): array
     if ((strtotime($dados['horaFim']) - strtotime($dados['hora'])) !== 3600) throw new DomainException('Cada atendimento deve durar exatamente 1 hora.');
     if (isset($services[$dados['servico']])) $dados['tipo'] = tipoAgendaServico($services[$dados['servico']]);
     if (!in_array($dados['tipo'], $tiposAgenda, true)) throw new DomainException('Selecione um tipo de atendimento válido.');
-    if (mb_strlen($dados['obs']) > 500) throw new DomainException('As observações devem ter até 500 caracteres.');
+    if (preg_match('/\A.{0,500}\z/us', $dados['obs']) !== 1) throw new DomainException('As observações devem ter até 500 caracteres.');
     return $dados;
 }
 
@@ -60,21 +60,15 @@ function idAgenda(array $campos, string $nome): int
 
 function buscarAgenda(mysqli $conn, int $id): array
 {
-    $sql = 'SELECT id, cliente, data, hora, horaFim, tipo, obs, situacao FROM agenda WHERE id=?';
+    $sql = 'SELECT id, cliente, data, hora, horaFim, tipo, obs, situacao, usuario_id FROM agenda WHERE id=?';
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, 'i', $id);
     mysqli_stmt_execute($stmt);
     $agenda = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
     mysqli_stmt_close($stmt);
     if (!$agenda) throw new DomainException('Agendamento não encontrado.');
-    if (!administradorAgenda()) {
-        $sub = usuarioLogado()['sub'];
-        $dono = mysqli_prepare($conn, 'SELECT agenda_id FROM agenda_contas WHERE agenda_id=? AND google_sub=?');
-        mysqli_stmt_bind_param($dono, 'is', $id, $sub);
-        mysqli_stmt_execute($dono);
-        $permitido = mysqli_fetch_assoc(mysqli_stmt_get_result($dono));
-        mysqli_stmt_close($dono);
-        if (!$permitido) throw new DomainException('Agendamento não encontrado.');
+    if (!administradorAgenda() && (int) $agenda['usuario_id'] !== usuarioLogado()['id']) {
+        throw new DomainException('Agendamento não encontrado.');
     }
     return $agenda;
 }
@@ -131,7 +125,6 @@ function executarAcaoAgenda(string $acao): never
             $id = idAgenda($_POST, $acao === 'excluir' ? 'idDel' : 'idSitu');
         }
         require __DIR__ . '/bdconnecta.php';
-        // Serializa cadastro/edição/situação para dois pedidos não ocuparem o mesmo horário.
         $lock = mysqli_fetch_row(mysqli_query($conn, "SELECT GET_LOCK(CONCAT(DATABASE(), ':agenda'), 5)"));
         if ((int) $lock[0] !== 1) throw new DomainException('A agenda está ocupada. Tente novamente.');
         $bloqueado = true;
@@ -139,10 +132,10 @@ function executarAcaoAgenda(string $acao): never
         $transacao = true;
         if ($acao === 'criar') {
             verificarConflito($conn, $dados);
-            $DTHR = date('Y-m-d H:i:s');
-            $sql = 'INSERT INTO agenda (cliente,data,hora,horaFim,DTHR,tipo,obs) VALUES (?,?,?,?,?,?,?)';
+            $usuarioId = administradorAgenda() ? null : usuarioLogado()['id'];
+            $sql = 'INSERT INTO agenda (cliente,data,hora,horaFim,DTHR,tipo,obs,usuario_id) VALUES (?,?,?,?,CURRENT_TIMESTAMP,?,?,?)';
             $stmt = mysqli_prepare($conn, $sql);
-            mysqli_stmt_bind_param($stmt, 'sssssss', $dados['cliente'], $dados['data'], $dados['hora'], $dados['horaFim'], $DTHR, $dados['tipo'], $dados['obs']);
+            mysqli_stmt_bind_param($stmt, 'ssssssi', $dados['cliente'], $dados['data'], $dados['hora'], $dados['horaFim'], $dados['tipo'], $dados['obs'], $usuarioId);
         } elseif ($acao === 'atualizar') {
             $atual = buscarAgenda($conn, $id);
             if (!administradorAgenda() && $atual['situacao'] !== 'Aberto') throw new DomainException('Este atendimento não pode mais ser alterado.');
@@ -166,14 +159,6 @@ function executarAcaoAgenda(string $acao): never
         }
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
-        if ($acao === 'criar') {
-            $novoId = mysqli_insert_id($conn);
-            $sub = usuarioLogado()['sub'];
-            $vinculo = mysqli_prepare($conn, 'INSERT INTO agenda_contas (agenda_id,google_sub) VALUES (?,?)');
-            mysqli_stmt_bind_param($vinculo, 'is', $novoId, $sub);
-            mysqli_stmt_execute($vinculo);
-            mysqli_stmt_close($vinculo);
-        }
         mysqli_commit($conn);
         $transacao = false;
     } catch (DomainException $exception) {

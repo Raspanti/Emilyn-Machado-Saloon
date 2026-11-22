@@ -1,3 +1,5 @@
+> Para instalar e testar a versão atual, consulte o [README](README.md). O fluxo OAuth descrito no histórico foi substituído pelo cadastro e login com e-mail e senha.
+
 # Entendendo a versão para celular
 
 Abra http://127.0.0.1:3000/ com Docker e BrowserSync em execução.

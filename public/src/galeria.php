@@ -1,5 +1,4 @@
 <?php
-// Uma entrada por imagem; servicos permite exibi-la em mais de um filtro.
 $servicosGaleria = [
     'todos' => 'Todas',
     'corte' => 'Corte',

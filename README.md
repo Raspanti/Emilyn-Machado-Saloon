@@ -1,6 +1,6 @@
 # Emilyn Machado Saloon
 
-Site do salão com catálogo de serviços, galeria e agendamento. O ambiente local usa PHP, Nginx, MariaDB e BrowserSync com Docker Compose. A agenda oferece blocos de 1 hora, das 9h às 18h.
+Projeto final do PIC I. O site apresenta os serviços e os trabalhos do salão e permite consultar a disponibilidade, criar uma conta e reservar horários. A equipe usa a agenda para acompanhar e gerenciar os atendimentos.
 
 ## Integrantes
 
@@ -11,64 +11,62 @@ Site do salão com catálogo de serviços, galeria e agendamento. O ambiente loc
 
 ## Funcionalidades
 
-- Catálogo por categoria, com acesso direto quando há um único serviço.
-- Galeria filtrável por serviço e navegação adaptada a celulares.
-- Consulta de disponibilidade e agendamento por serviço, em blocos de uma hora.
-- Login com Google, consulta dos próprios horários e painel administrativo para gerenciar atendimentos.
+- Catálogo por categoria, páginas de serviço, galeria filtrável e informações de contato.
+- Calendário de disponibilidade com atendimentos de uma hora, das 9h às 18h.
+- Cadastro e login com e-mail e senha. As senhas são armazenadas como hash.
+- Clientes podem consultar seus agendamentos e editar ou cancelar seus horários em aberto. A equipe consulta a agenda geral, edita registros e altera a situação dos atendimentos.
+- A agenda verifica conflitos de horário antes de confirmar a reserva.
 
 ## Tecnologias e requisitos
 
-PHP 8.3, Nginx, MariaDB 10.11, HTML, CSS, JavaScript e BrowserSync. Use Docker em execução com Docker Compose v2 recente (2.24.4 ou superior para a diretiva `!override`), acesso à internet para baixar as imagens e portas locais 3000 e 8000 livres. O Node.js do BrowserSync roda no container. O login requer um cliente OAuth Web próprio do avaliador ou do grupo.
+PHP 8.3 com MySQLi e mysqlnd, MariaDB 10.11, Nginx, HTML, CSS e JavaScript. Para executar com os containers do projeto, use Docker com Compose v2.24.4 ou posterior, acesso à internet para baixar as imagens, e as portas locais 8000 e 3306 livres. O BrowserSync é opcional e usa a porta 3000.
 
-## Subir o ambiente local
+## Instalação local
 
-Instale Docker com o plugin Compose v2 e execute os comandos na raiz do projeto. O Docker deve estar em execução e acessível à sua conta.
+Clone o [repositório do projeto](https://github.com/Raspanti/Emilyn-Machado-Saloon) ou extraia o ZIP e abra um terminal na pasta que contém `docker-compose.yml`.
 
-Copie o modelo de configuração do banco. Os valores do modelo coincidem com os padrões de demonstração do Compose. Se você usar um volume existente, informe as credenciais com que ele foi inicializado.
+Crie `.env.agenda` a partir de `.env.agenda.example`. Os valores de exemplo coincidem com os do banco de demonstração do Compose. Se já tiver um banco local, ajuste a configuração para os dados desse ambiente.
 
-```sh
-cp -n .env.agenda.example .env.agenda
+```powershell
+Copy-Item .env.agenda.example .env.agenda
+docker compose -f docker-compose.yml -f compose.agendamento.yaml up -d --build db app web
+docker compose -f docker-compose.yml -f compose.agendamento.yaml logs --tail 30 db
 ```
 
-```sh
-docker compose -f docker-compose.yml -f compose.browsersync.yaml -f compose.agendamento.yaml up -d --build db app web browsersync
-docker compose -f docker-compose.yml -f compose.browsersync.yaml -f compose.agendamento.yaml ps
+Em Bash, use `cp .env.agenda.example .env.agenda` para copiar o modelo.
+
+### Configurar o banco
+
+Quando o MariaDB informar que está pronto, importe `database/agenda.sql` e `database/usuarios.sql` em um banco novo. Os scripts incluem somente a estrutura das tabelas, sem contas nem reservas.
+
+```powershell
+Get-Content -Raw database/agenda.sql | docker compose exec -T db sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mariadb -u "$MYSQL_USER" "$MYSQL_DATABASE"'
+Get-Content -Raw database/usuarios.sql | docker compose exec -T db sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mariadb -u "$MYSQL_USER" "$MYSQL_DATABASE"'
 ```
 
-- [Site com atualização automática](http://127.0.0.1:3000/). Use este endereço para testar o login Google com a configuração padrão.
-- [Site direto no Nginx](http://127.0.0.1:8000/). Útil para conferir o catálogo sem BrowserSync.
+Em Bash, substitua o `Get-Content ... |` pelo redirecionamento `< database/agenda.sql` ou `< database/usuarios.sql` no fim do comando correspondente.
 
-## Preparar o banco
+Para um banco existente, importe `usuarios.sql` e consulte `SHOW COLUMNS FROM agenda;`. Se a tabela `agenda` existir sem `usuario_id`, rode [003-agenda-usuarios.sql](database/003-agenda-usuarios.sql). Se a coluna já existir, confira se `cliente` comporta 100 caracteres. Caso ainda seja `VARCHAR(50)`, execute `ALTER TABLE agenda MODIFY COLUMN cliente VARCHAR(100) NOT NULL;`. Agendamentos antigos sem vínculo ficam disponíveis para a equipe.
 
-Aguarde o MariaDB informar que está pronto para conexões em `docker compose logs --tail 30 db`. Confira quais tabelas já existem:
+Abra o [site local](http://127.0.0.1:8000/). Para parar o ambiente e preservar os dados, use `docker compose stop`.
 
-```sh
-docker compose exec -T db sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mariadb -u "$MYSQL_USER" "$MYSQL_DATABASE" -e "SHOW TABLES"'
-```
+## Exemplos para avaliação
 
-Em um banco novo, importe os dois arquivos na ordem abaixo. Em um banco existente, execute apenas o comando correspondente à tabela ausente. `agenda_contas` depende de `agenda`. Se ambas existirem, pule a importação. Os arquivos SQL criam a estrutura e não inserem registros de clientes.
+1. Abra o [cadastro](http://127.0.0.1:8000/cadastro.php), crie uma conta e entre pela [tela de login](http://127.0.0.1:8000/login.php).
+2. Na [página de manicure](http://127.0.0.1:8000/servico.php?id=manicure), selecione uma data e um horário livre. Confirme e confira o resultado em [Meus agendamentos](http://127.0.0.1:8000/agendamento.php).
+3. Entre com outro cliente e confira que o horário aparece como ocupado no calendário, enquanto os dados da reserva ficam disponíveis apenas ao titular e à equipe.
+4. Para testar o painel da equipe, crie uma conta de teste pelo cadastro e promova somente essa conta no banco. Substitua o e-mail no exemplo e entre novamente.
 
-```sh
-docker compose exec -T db sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mariadb -u "$MYSQL_USER" "$MYSQL_DATABASE"' < database/agenda.sql
-docker compose exec -T db sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" mariadb -u "$MYSQL_USER" "$MYSQL_DATABASE"' < database/002-agenda-contas.sql
-```
+   ```sql
+   UPDATE usuarios SET perfil = 'equipe' WHERE email = 'equipe@exemplo.com';
+   ```
 
-Rode novamente `SHOW TABLES` para confirmar a presença de `agenda` e `agenda_contas`. O volume do MariaDB preserva os dados entre execuções. Use `docker compose stop` para parar os serviços e preserve o volume ao atualizar o projeto.
+5. Como equipe, confira a lista geral, os filtros e a alteração de situação. Para avaliar as páginas públicas, veja também o [catálogo](http://127.0.0.1:8000/servicos.php) e a [galeria](http://127.0.0.1:8000/galeria.php).
 
-## Habilitar o login e conferir a agenda
+## Publicação
 
-1. Crie um cliente OAuth Web na Google Auth Platform. Copie `config/google.example.php` para `config/google.local.php`. Preencha o ID e o segredo do cliente OAuth Web localmente. O PHP no container precisa conseguir ler o arquivo, que fica fora da pasta pública e é ignorado pelo Git.
-2. No cliente OAuth, autorize o retorno exato `http://127.0.0.1:3000/google-retorno.php`. Se o aplicativo estiver em modo de teste, inclua a conta que será usada entre os usuários de teste. Preencha `admin_emails` apenas para contas que devam administrar a agenda.
-3. Abra a [página de manicure](http://127.0.0.1:3000/servico.php?id=manicure), escolha um dia e um horário, entre com uma conta de cliente e confirme o cadastro. Confira o registro em **Meus agendamentos** e consulte o mesmo horário em outra sessão para verificar o bloqueio.
+Configure o servidor para servir a pasta `public/`. Prepare as tabelas no banco da hospedagem antes de publicar. Se a hospedagem já tiver um `bdconnecta.php` na raiz pública que fornece a variável `$conn`, mantenha a cópia do domínio. O carregador em `public/src/bdconnecta.php` usa `DB_HOST`, `DB_USER`, `DB_PASSWORD` e `DB_NAME` quando o ambiente está configurado. Sem `DB_HOST`, ele pode usar o arquivo de conexão da raiz pública.
 
-O endereço padrão aceita conexões apenas na própria máquina. Para testar a interface em dimensões de celular, use o modo responsivo do navegador no endereço acima.
+## Entrega do PIC I
 
-## Exemplos
-
-- [Catálogo de serviços](http://127.0.0.1:3000/servicos.php)
-- [Galeria](http://127.0.0.1:3000/galeria.php)
-- [Calendário de Pedicure](http://127.0.0.1:3000/servico.php?id=pedicure)
-
-O catálogo e a galeria podem ser avaliados antes de configurar o Google. Para gravar e gerenciar agendamentos, conclua a configuração do banco e do OAuth acima. As imagens com a legenda “Imagem ilustrativa” são referências visuais geradas para o projeto.
-
-Mais detalhes em [GUIA_DESENVOLVIMENTO.md](GUIA_DESENVOLVIMENTO.md) e [LIVE_RELOAD.md](LIVE_RELOAD.md).
+Até **23 de novembro de 2026**, entregar no Teams o ZIP com o projeto, o link do GitHub acessível ao professor e o vídeo de apresentação ou seu link. O vídeo deve mostrar o projeto funcionando, explicar as tecnologias e os resultados e incluir todos os integrantes com a câmera aberta durante a própria apresentação. Se houver impedimento, a apresentação presencial pode ser combinada com o professor.

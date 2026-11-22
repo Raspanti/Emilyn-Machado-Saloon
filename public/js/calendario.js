@@ -1,4 +1,3 @@
-// Mesma regra do servidor: intervalos adjacentes são permitidos.
 function bookingMinutes(value) {
     const [hours, minutes] = value.split(':').map(Number);
     return hours * 60 + minutes;
@@ -160,7 +159,6 @@ document.querySelectorAll('[data-booking-calendar]').forEach(calendar => {
     form.addEventListener('submit', event => {
         if (!validate()) event.preventDefault();
     });
-    // Atualiza ao retornar à aba; o POST também verifica concorrência no banco.
     document.addEventListener('visibilitychange', () => {if (!document.hidden && dayInput.value) loadAvailability();});
     drawMonth(); showTimes(!!dayInput.value); loadAvailability();
 });

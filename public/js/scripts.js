@@ -1,5 +1,3 @@
-// VOLTAR AO TOPO
-// No celular, a navegação é feita pela barra inferior, sem menu expansível.
 const btnTop = document.querySelector('[data-back-top]');
 
 function backToTop(event) {
@@ -16,8 +14,6 @@ if (btnTop) {
 }
 
 
-// BARRA INFERIOR FIXA NA ÁREA VISÍVEL
-// O teclado pode reduzir visualViewport sem reduzir a altura do layout.
 const bottomNav = document.querySelector('.bottom-nav');
 const mobileScreen = window.matchMedia('(max-width: 899px)');
 let bottomNavFrame = 0;
@@ -31,7 +27,6 @@ function atualizarBarraInferior() {
     const viewport = window.visualViewport;
     let recuo = 0;
 
-    // Não confundir o zoom por pinça com o teclado virtual.
     if (mobileScreen.matches && viewport && Math.abs(viewport.scale - 1) < 0.01) {
         recuo = calcularRecuoBarra(window.innerHeight, viewport.height, viewport.offsetTop);
     }
