@@ -4,7 +4,10 @@ Site do salão com catálogo de serviços, galeria e agendamento. O ambiente loc
 
 ## Integrantes
 
-Aguardando os nomes completos dos integrantes para a versão de entrega.
+- Matheus Raspante
+- Alexandre Rios
+- Lucas
+- Yuri
 
 ## Funcionalidades
 
