@@ -6,8 +6,8 @@ Projeto final do PIC I. O site apresenta os serviços e os trabalhos do salão e
 
 - Matheus Raspante
 - Alexandre Rios
-- Lucas
-- Yuri
+- Lucas Romano
+- Yuri Cunha
 
 ## Funcionalidades
 
